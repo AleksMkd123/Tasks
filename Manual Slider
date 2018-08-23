@@ -1,0 +1,61 @@
+<style>
+    #slider{
+        width:720px;
+        height:400px;
+        overflow:hidden;
+        /*border-radius:30px;*/
+    }
+    #slider .slides{
+       display:block;
+        width:6000px;
+        height:800px;
+        margin:0;
+        padding:0;
+    }
+    #slider .slide{
+        float:left;
+        list-style-type: none;
+        width:720px;
+        height:400px;
+    }
+</style>
+
+<div class="container">
+    <div id="slider">
+        <ul class="slides">
+            <li class="slide">Your img src</li>
+            <li class="slide">Your img src</li>
+            <li class="slide">Your img src</li>
+            <li class="slide">Your img src</li>
+        </ul>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        //Configuration
+        var width = 720;
+        var height = 720;
+        var animationSpeed = 1000;
+        var pause = 4000;
+        var currentSlide = 1;
+
+        //
+        var $slider = $('#slider');
+        var $slideContainer = $slider.find('.slides');
+        var $slides = $slideContainer.find('.slide')
+
+        setInterval(function () {
+            $("#slider .slides").animate({ 'margin-left': '-=' + width  },
+                animationSpeed,
+                function () {
+                    currentSlide++;
+                    if (currentSlide === $slides.length ) {
+                        currentSlide = 0;
+                        $slideContainer.css('margin-left', 0);
+                    }
+                });
+        }, pause);
+    });
+</script>
